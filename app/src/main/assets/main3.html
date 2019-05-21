@@ -1,0 +1,54 @@
+<!doctype html>
+<html>
+<head>
+    <link href="css/reset.css" rel="stylesheet">
+    <link href="css/video-js.css" rel="stylesheet">
+    <link href="css/main.css" rel="stylesheet">
+</head>
+<body>
+<video id="main-video" class="video-js vjs-default-skin"
+       controls preload="none" width="720px" height="480px"
+       poster='http://video-js.zencoder.com/oceans-clip.jpg'>
+    <source src="http://vjs.zencdn.net/v/oceans.mp4" type="video/mp4">
+    <!-- <source src="https://www.youtube.com/embed/Ij3MGjfA4Qs.webm" type='video/webm' />
+     <source src="https://www.youtube.com/embed/Ij3MGjfA4Qs.ogv" type='video/ogg' /> -->
+</video>
+<script src="js/video.min.js"></script>
+<script type="text/javascript">
+
+    function callFromActivity(msg){
+        var url = msg;
+        var videoEl = document.createElement("video");
+        videoEl.className= "video-js vjs-default-skin";
+        videoEl.width = "360";
+        videoEl.height = "595";
+        videoEl.setAttribute("id", "example_video_1");
+        document.getElementById("vid").appendChild(videoEl);
+
+        _V_("example_video_1").ready(function(){
+
+            var myPlayer = this;
+            myPlayer.src({ type: "video/youtube", src: url});
+            var mainTrack = myPlayer.values.src;
+            var startedOnce = false;
+            var endedOnce = false;
+            var firstQuartileOnce = false;
+            var midpointOnce = false;
+            var thirdQuartileOnce = false;
+
+
+
+
+
+            var callAndroid = function() {
+                AndroidFunction.openAndroidDialog();
+            }
+
+            myPlayer.addEvent("ended", callAndroid);
+        });
+
+    }
+</script>
+</body>
+</html>
+
